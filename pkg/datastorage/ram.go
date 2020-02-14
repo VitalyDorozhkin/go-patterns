@@ -1,22 +1,9 @@
-package ram
+package datastorage
 
 import "fmt"
 
 type Ram struct {
-	disc [4]byte
-	head [4]bool
-}
-
-func (r *Ram) Free(position int) {
-	if position < r.GetSize() {
-		r.head[position] = false
-	}
-}
-
-func (r *Ram) CleanAll() {
-	for i := range r.head {
-		r.head[i] = false
-	}
+	Disc
 }
 
 func (r *Ram) Read(position int) byte {
@@ -37,6 +24,8 @@ func (r *Ram) Write(position int, data byte) {
 	r.disc[position] = data
 }
 
-func (r *Ram) GetSize() int {
-	return len(r.disc)
+func (r *Ram) CleanAll() {
+	for i := range r.head {
+		r.head[i] = false
+	}
 }

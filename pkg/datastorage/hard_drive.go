@@ -1,26 +1,12 @@
-package harddrive
+package datastorage
 
 import "fmt"
 
 type HardDrive struct {
-	disc [16]byte
-	head [16]bool
-}
-
-func (h *HardDrive) Free(position int) {
-	if position < h.GetSize() {
-		h.head[position] = false
-	}
-}
-
-func (h *HardDrive) CleanAll() {
-	for i := range h.head {
-		h.head[i] = false
-	}
+	Disc
 }
 
 func (h *HardDrive) Read(position int) byte {
-
 	if position >= h.GetSize() {
 		fmt.Printf("HardDrive don't has %d pointer\n", position)
 		return 0
@@ -48,8 +34,3 @@ func (h *HardDrive) WriteFirst(data byte) (i int) {
 	}
 	return i
 }
-
-func (h *HardDrive) GetSize() int {
-	return len(h.disc)
-}
-
