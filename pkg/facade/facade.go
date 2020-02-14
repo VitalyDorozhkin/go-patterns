@@ -2,8 +2,8 @@ package facade
 
 import (
 	"fmt"
-	"github.com/VitalyDorozhkin/go-patterns/pkg/datastorage"
-	"github.com/VitalyDorozhkin/go-patterns/pkg/processingunit"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/facade/datastorage"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/facade/processingunit"
 )
 
 type ComputerFacade struct {
@@ -27,7 +27,7 @@ func (c *ComputerFacade) Swap(ramPos int, drivePos int) {
 }
 
 func (c *ComputerFacade) TurnOff() {
-	for i := 0; i < c.ram.GetSize(); i++ {
+	for i := 0; i < c.ram.Size(); i++ {
 		c.Swap(i, i)
 	}
 	c.processor.Freeze()
@@ -36,7 +36,7 @@ func (c *ComputerFacade) TurnOff() {
 
 func (c *ComputerFacade) Write(data byte) (position int) {
 	position = c.hd.WriteFirst(data)
-	if position < c.hd.GetSize() {
+	if position < c.hd.Size() {
 		fmt.Printf("Data loaded on HardDrive[%d]\n", position)
 		return
 	}
@@ -45,9 +45,13 @@ func (c *ComputerFacade) Write(data byte) (position int) {
 }
 
 func NewComputerFacade() *ComputerFacade {
-	return &ComputerFacade{
+
+	c := &ComputerFacade{
 		processor: &processingunit.CPU{},
-		ram:       &datastorage.Ram{Disc: *datastorage.NewDisc(4)},
-		hd:        &datastorage.HardDrive{Disc: *datastorage.NewDisc(16)},
+		ram:       &datastorage.Ram{},
+		hd:        &datastorage.HardDrive{},
 	}
+	c.ram.SetSize(4)
+	c.hd.SetSize(16)
+	return c
 }

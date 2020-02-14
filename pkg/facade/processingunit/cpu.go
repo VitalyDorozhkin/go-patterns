@@ -1,7 +1,7 @@
 package processingunit
 
 import (
-	"github.com/VitalyDorozhkin/go-patterns/pkg/datastorage"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/facade/datastorage"
 )
 
 type CPU struct {

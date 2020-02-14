@@ -3,11 +3,11 @@ package datastorage
 import "fmt"
 
 type HardDrive struct {
-	Disc
+	storage
 }
 
 func (h *HardDrive) Read(position int) byte {
-	if position >= h.GetSize() {
+	if position >= h.Size() {
 		fmt.Printf("HardDrive don't has %d pointer\n", position)
 		return 0
 	}
@@ -16,7 +16,7 @@ func (h *HardDrive) Read(position int) byte {
 }
 
 func (h *HardDrive) Write(position int, data byte) {
-	if position >= h.GetSize() {
+	if position >= h.Size() {
 		fmt.Printf("HardDrive don't has %d pointer\n", position)
 		return
 	}
@@ -25,7 +25,7 @@ func (h *HardDrive) Write(position int, data byte) {
 }
 
 func (h *HardDrive) WriteFirst(data byte) (i int) {
-	for i = 0; i < h.GetSize(); i++ {
+	for i = 0; i < h.Size(); i++ {
 		if !h.head[i] {
 			h.disc[i] = data
 			h.head[i] = true

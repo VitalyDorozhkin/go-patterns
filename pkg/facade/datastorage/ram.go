@@ -3,11 +3,11 @@ package datastorage
 import "fmt"
 
 type Ram struct {
-	Disc
+	storage
 }
 
 func (r *Ram) Read(position int) byte {
-	if position >= r.GetSize() {
+	if position >= r.Size() {
 		fmt.Printf("Ram don't has %d pointer\n", position)
 		return 0
 	}
@@ -16,7 +16,7 @@ func (r *Ram) Read(position int) byte {
 }
 
 func (r *Ram) Write(position int, data byte) {
-	if position >= r.GetSize() {
+	if position >= r.Size() {
 		fmt.Printf("Ram don't has %d pointer\n", position)
 		return
 	}
