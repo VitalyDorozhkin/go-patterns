@@ -69,13 +69,13 @@ func TestComputerFacade(t *testing.T) {
 			t.Errorf("Write() = %v, want %v", gotPosition, tt.wantPosition)
 		}
 	}
-	c.hd.CleanAll()
+	c.hd.Storage().CleanAll()
 	for _, tt := range testsWrite {
 		if gotPosition := c.Write(tt.data); gotPosition != tt.wantPosition {
 			t.Errorf("Write() = %v, want %v", gotPosition, tt.wantPosition)
 		}
 	}
-	c.hd.Free(5)
+	c.hd.Storage().Free(5)
 	for _, tt := range testsFree {
 		if gotPosition := c.Write(tt.data); gotPosition != tt.wantPosition {
 			t.Errorf("Write() = %v, want %v", gotPosition, tt.wantPosition)

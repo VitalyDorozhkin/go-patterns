@@ -7,9 +7,9 @@ import (
 )
 
 type ComputerFacade struct {
-	processor *processingunit.CPU
-	ram       *datastorage.Ram
-	hd        *datastorage.HardDrive
+	processor processingunit.CPU
+	ram       datastorage.Ram
+	hd        datastorage.HardDrive
 }
 
 func (c *ComputerFacade) Start() int {
@@ -27,7 +27,7 @@ func (c *ComputerFacade) Swap(ramPos int, drivePos int) {
 }
 
 func (c *ComputerFacade) TurnOff() {
-	for i := 0; i < c.ram.Size(); i++ {
+	for i := 0; i < c.ram.Storage().Size(); i++ {
 		c.Swap(i, i)
 	}
 	c.processor.Freeze()
@@ -36,7 +36,7 @@ func (c *ComputerFacade) TurnOff() {
 
 func (c *ComputerFacade) Write(data byte) (position int) {
 	position = c.hd.WriteFirst(data)
-	if position < c.hd.Size() {
+	if position < c.hd.Storage().Size() {
 		fmt.Printf("Data loaded on HardDrive[%d]\n", position)
 		return
 	}
@@ -47,11 +47,11 @@ func (c *ComputerFacade) Write(data byte) (position int) {
 func NewComputerFacade() *ComputerFacade {
 
 	c := &ComputerFacade{
-		processor: &processingunit.CPU{},
-		ram:       &datastorage.Ram{},
-		hd:        &datastorage.HardDrive{},
+		processor: processingunit.NewCPU(),
+		ram:       datastorage.NewRam(),
+		hd:        datastorage.NewHardDrive(),
 	}
-	c.ram.SetSize(4)
-	c.hd.SetSize(16)
+	c.ram.Storage().SetSize(4)
+	c.hd.Storage().SetSize(16)
 	return c
 }

@@ -2,11 +2,22 @@ package datastorage
 
 import "fmt"
 
-type Ram struct {
+type Ram interface {
+	Read(position int) byte
+	Write(position int, data byte)
+	CleanAll()
+	Storage() Storage
+}
+
+type ram struct {
 	storage
 }
 
-func (r *Ram) Read(position int) byte {
+func (r *ram) Storage() Storage {
+	return &r.storage
+}
+
+func (r *ram) Read(position int) byte {
 	if position >= r.Size() {
 		fmt.Printf("Ram don't has %d pointer\n", position)
 		return 0
@@ -15,7 +26,7 @@ func (r *Ram) Read(position int) byte {
 	return r.disc[position]
 }
 
-func (r *Ram) Write(position int, data byte) {
+func (r *ram) Write(position int, data byte) {
 	if position >= r.Size() {
 		fmt.Printf("Ram don't has %d pointer\n", position)
 		return
@@ -24,8 +35,12 @@ func (r *Ram) Write(position int, data byte) {
 	r.disc[position] = data
 }
 
-func (r *Ram) CleanAll() {
+func (r *ram) CleanAll() {
 	for i := range r.head {
 		r.head[i] = false
 	}
+}
+
+func NewRam() Ram {
+	return &ram{}
 }

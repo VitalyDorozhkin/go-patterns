@@ -32,3 +32,4 @@ func (s *storage) SetSize(size int) {
 	s.disc = make([]byte, size, size)
 	s.head = make([]bool, size, size)
 }
+

@@ -15,7 +15,7 @@ type Computer struct {
 
 // Show returns product.
 func (c *Computer) Show() string {
-	return fmt.Sprintf("Builder: %s\n"+
+	return fmt.Sprintf("builder: %s\n"+
 		"Type: %s\n"+
 		"MotherBoard: %s\n"+
 		"CPU: %s\n"+

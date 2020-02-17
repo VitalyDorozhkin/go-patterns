@@ -2,11 +2,22 @@ package datastorage
 
 import "fmt"
 
-type HardDrive struct {
+type HardDrive interface {
+	Read(position int) byte
+	Write(position int, data byte)
+	WriteFirst(data byte) (i int)
+	Storage() Storage
+}
+
+type hardDrive struct {
 	storage
 }
 
-func (h *HardDrive) Read(position int) byte {
+func (h *hardDrive) Storage() Storage {
+	return &h.storage
+}
+
+func (h *hardDrive) Read(position int) byte {
 	if position >= h.Size() {
 		fmt.Printf("HardDrive don't has %d pointer\n", position)
 		return 0
@@ -15,7 +26,7 @@ func (h *HardDrive) Read(position int) byte {
 	return h.disc[position]
 }
 
-func (h *HardDrive) Write(position int, data byte) {
+func (h *hardDrive) Write(position int, data byte) {
 	if position >= h.Size() {
 		fmt.Printf("HardDrive don't has %d pointer\n", position)
 		return
@@ -24,7 +35,7 @@ func (h *HardDrive) Write(position int, data byte) {
 	h.disc[position] = data
 }
 
-func (h *HardDrive) WriteFirst(data byte) (i int) {
+func (h *hardDrive) WriteFirst(data byte) (i int) {
 	for i = 0; i < h.Size(); i++ {
 		if !h.head[i] {
 			h.disc[i] = data
@@ -33,4 +44,8 @@ func (h *HardDrive) WriteFirst(data byte) (i int) {
 		}
 	}
 	return i
+}
+
+func NewHardDrive() HardDrive {
+	return &hardDrive{}
 }

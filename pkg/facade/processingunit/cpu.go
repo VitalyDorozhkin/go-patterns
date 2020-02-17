@@ -4,27 +4,39 @@ import (
 	"github.com/VitalyDorozhkin/go-patterns/pkg/facade/datastorage"
 )
 
-type CPU struct {
+type CPU interface {
+	Freeze()
+	SetCache(memory datastorage.MemoryEditor)
+	LoadCache(memory datastorage.MemoryEditor)
+	Jump(position int)
+	Execute() int
+}
+
+type cpu struct {
 	pointer int
 	cache   byte
 }
 
-func (c *CPU) Freeze() {
+func (c *cpu) Freeze() {
 	c.pointer = 0
 }
 
-func (c *CPU) SetCache(memory datastorage.Memory) {
+func (c *cpu) SetCache(memory datastorage.MemoryEditor) {
 	c.cache = memory.Read(c.pointer)
 }
 
-func (c *CPU) LoadCache(memory datastorage.Memory) {
+func (c *cpu) LoadCache(memory datastorage.MemoryEditor) {
 	memory.Write(c.pointer, c.cache)
 }
 
-func (c *CPU) Jump(position int) {
+func (c *cpu) Jump(position int) {
 	c.pointer = position
 }
 
-func (c *CPU) Execute() int {
+func (c *cpu) Execute() int {
 	return c.pointer
+}
+
+func NewCPU() CPU {
+	return &cpu{}
 }
