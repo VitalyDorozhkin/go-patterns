@@ -1,7 +1,10 @@
-package builder
+package computer_builder
+
+import (
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+)
 
 type ComputerBuilder interface {
-	InitComputer()
 	SetType(model string)
 	SetMotherBoard(model string)
 	SetCPU(model string)
@@ -9,5 +12,5 @@ type ComputerBuilder interface {
 	SetRam(model string)
 	SetGPU(model string)
 	SetOS(model string)
-	Build() *Computer
+	Build() *computer.Computer
 }

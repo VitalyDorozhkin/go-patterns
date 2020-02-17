@@ -1,11 +1,20 @@
-package builder
+package director
 
-type Director struct {
-	builder ComputerBuilder
+import (
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer-builder"
+)
+
+type Director interface {
+	ConstructPro() *computer.Computer
+	ConstructAir() *computer.Computer
 }
 
-func (d *Director) ConstructPro() *Computer {
-	d.builder.InitComputer()
+type director struct {
+	builder computer_builder.ComputerBuilder
+}
+
+func (d *director) ConstructPro() *computer.Computer {
 	d.builder.SetType("Pro")
 	d.builder.SetMotherBoard("Pro")
 	d.builder.SetCPU("Intel Xeon W12")
@@ -16,8 +25,7 @@ func (d *Director) ConstructPro() *Computer {
 	return d.builder.Build()
 }
 
-func (d *Director) ConstructAir() *Computer {
-	d.builder.InitComputer()
+func (d *director) ConstructAir() *computer.Computer {
 	d.builder.SetType("Air")
 	d.builder.SetMotherBoard("Air")
 	d.builder.SetCPU("Intel Core i5")
@@ -26,4 +34,8 @@ func (d *Director) ConstructAir() *Computer {
 	d.builder.SetRam("16 GB")
 	d.builder.SetOS("Lite")
 	return d.builder.Build()
+}
+
+func NewDirector(builder computer_builder.ComputerBuilder) Director{
+	return &director{builder}
 }

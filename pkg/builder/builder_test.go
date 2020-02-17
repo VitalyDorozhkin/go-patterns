@@ -1,13 +1,15 @@
 package builder
 
 import (
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer-builder"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/director"
 	"testing"
 )
 
 func TestBuilder(t *testing.T) {
-
-	appleDirector := Director{&AppleBuilder{}}
-	xiaomiDirector := Director{&XiaomiBuilder{}}
+	appleDirector := director.NewDirector(computer_builder.NewAppleBuilder())
+	xiaomiDirector := director.NewDirector(computer_builder.NewXiaomiBuilder())
 
 	miNotebookPro := xiaomiDirector.ConstructPro()
 	miNotebookAir := xiaomiDirector.ConstructAir()
@@ -15,10 +17,10 @@ func TestBuilder(t *testing.T) {
 	macbookPro := appleDirector.ConstructPro()
 	macbookAir := appleDirector.ConstructAir()
 
-	cases := make(map[*Computer]string, 4)
+	cases := make(map[*computer.Computer]string, 4)
 
 	cases[miNotebookPro] =
-		"Builder: Xiaomi\n" +
+		"builder: Xiaomi\n" +
 			"Type: Pro\n" +
 			"MotherBoard: Xiaomi Pro MotherBoard\n" +
 			"CPU: Intel Xeon W12\n" +
@@ -27,7 +29,7 @@ func TestBuilder(t *testing.T) {
 			"GPU: AMD Radeon Pro 580X\n" +
 			"OS: Windows 10 Pro\n"
 	cases[miNotebookAir] =
-		"Builder: Xiaomi\n" +
+		"builder: Xiaomi\n" +
 			"Type: Air\n" +
 			"MotherBoard: Xiaomi Air MotherBoard\n" +
 			"CPU: Intel Core i5\n" +
@@ -36,7 +38,7 @@ func TestBuilder(t *testing.T) {
 			"GPU: Nvidia Geforce\n" +
 			"OS: Windows 10 Lite\n"
 	cases[macbookPro] =
-		"Builder: Apple\n" +
+		"builder: Apple\n" +
 			"Type: Pro\n" +
 			"MotherBoard: Apple Pro MotherBoard\n" +
 			"CPU: Intel Xeon W12\n" +
@@ -45,7 +47,7 @@ func TestBuilder(t *testing.T) {
 			"GPU: AMD Radeon Pro 580X\n" +
 			"OS: MacOS Catalina Pro\n"
 	cases[macbookAir] =
-		"Builder: Apple\n" +
+		"builder: Apple\n" +
 			"Type: Air\n" +
 			"MotherBoard: Apple Air MotherBoard\n" +
 			"CPU: Intel Core i5\n" +

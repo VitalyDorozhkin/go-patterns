@@ -1,42 +1,45 @@
-package builder
+package computer_builder
 
-type AppleBuilder struct {
-	computer *Computer
+import (
+	computer2 "github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+)
+
+type appleBuilder struct {
+	computer *computer2.Computer
 }
 
-func (a *AppleBuilder) InitComputer() {
-	a.computer = new(Computer)
-	a.computer.Builder = "Apple"
-}
-
-func (a *AppleBuilder) SetType(model string) {
+func (a *appleBuilder) SetType(model string) {
 	a.computer.Type = model
 }
 
-func (a *AppleBuilder) SetMotherBoard(model string) {
+func (a *appleBuilder) SetMotherBoard(model string) {
 	a.computer.MotherBoard = "Apple " + model + " MotherBoard"
 }
 
-func (a *AppleBuilder) SetCPU(model string) {
+func (a *appleBuilder) SetCPU(model string) {
 	a.computer.CPU = model
 }
 
-func (a *AppleBuilder) SetHardDrive(model string) {
+func (a *appleBuilder) SetHardDrive(model string) {
 	a.computer.HardDrive = "Apple HardDrive on " + model
 }
 
-func (a *AppleBuilder) SetRam(model string) {
+func (a *appleBuilder) SetRam(model string) {
 	a.computer.Ram = "Apple Ram on " + model
 }
 
-func (a *AppleBuilder) SetGPU(model string) {
+func (a *appleBuilder) SetGPU(model string) {
 	a.computer.GPU = model
 }
 
-func (a *AppleBuilder) SetOS(model string) {
+func (a *appleBuilder) SetOS(model string) {
 	a.computer.OS = "MacOS Catalina " + model
 }
 
-func (a *AppleBuilder) Build() *Computer {
+func (a *appleBuilder) Build() *computer2.Computer {
 	return a.computer
+}
+
+func NewAppleBuilder() ComputerBuilder{
+	return &appleBuilder{&computer2.Computer{Builder: "Apple"}}
 }
