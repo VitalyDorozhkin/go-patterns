@@ -36,6 +36,6 @@ func (d *director) ConstructAir() *computer.Computer {
 	return d.builder.Build()
 }
 
-func NewDirector(builder computer_builder.ComputerBuilder) Director{
+func NewService(builder computer_builder.ComputerBuilder) Director{
 	return &director{builder}
 }

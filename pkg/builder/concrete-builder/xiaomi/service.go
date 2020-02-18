@@ -1,6 +1,9 @@
-package computer_builder
+package xiaomi
 
-import computer2 "github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+import (
+	computer2 "github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer-builder"
+)
 
 type xiaomiBuilder struct {
 	computer *computer2.Computer
@@ -38,6 +41,6 @@ func (x *xiaomiBuilder) Build() *computer2.Computer {
 	return x.computer
 }
 
-func NewXiaomiBuilder() ComputerBuilder{
+func NewBuilder() computer_builder.ComputerBuilder {
 	return &xiaomiBuilder{&computer2.Computer{Builder: "Xiaomi"}}
 }

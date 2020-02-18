@@ -1,7 +1,8 @@
-package computer_builder
+package apple
 
 import (
 	computer2 "github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer-builder"
 )
 
 type appleBuilder struct {
@@ -40,6 +41,6 @@ func (a *appleBuilder) Build() *computer2.Computer {
 	return a.computer
 }
 
-func NewAppleBuilder() ComputerBuilder{
+func NewBuilder() computer_builder.ComputerBuilder {
 	return &appleBuilder{&computer2.Computer{Builder: "Apple"}}
 }

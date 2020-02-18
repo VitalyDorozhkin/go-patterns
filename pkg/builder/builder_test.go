@@ -2,14 +2,15 @@ package builder
 
 import (
 	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer"
-	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/computer-builder"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/concrete-builder/apple"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/concrete-builder/xiaomi"
 	"github.com/VitalyDorozhkin/go-patterns/pkg/builder/director"
 	"testing"
 )
 
 func TestBuilder(t *testing.T) {
-	appleDirector := director.NewDirector(computer_builder.NewAppleBuilder())
-	xiaomiDirector := director.NewDirector(computer_builder.NewXiaomiBuilder())
+	appleDirector := director.NewService(apple.NewBuilder())
+	xiaomiDirector := director.NewService(xiaomi.NewBuilder())
 
 	miNotebookPro := xiaomiDirector.ConstructPro()
 	miNotebookAir := xiaomiDirector.ConstructAir()
@@ -62,5 +63,4 @@ func TestBuilder(t *testing.T) {
 			t.Errorf("Expect:\n%s\nBut result is:\n%s\n", v, result)
 		}
 	}
-
 }
