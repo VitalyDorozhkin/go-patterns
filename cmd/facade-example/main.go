@@ -13,8 +13,8 @@ import (
 func main() {
 	factory := user.NewFactory()
 	i := informator.NewInformator(
-		"%s is too long! max %d",
-		"%s is too short! min %d",
+		"%'s' is too long! max %d",
+		"%'s' is too short! min %d",
 		"%d is too big! max %d",
 		"%d is too small! min %d",
 	)

@@ -16,25 +16,25 @@ type informator struct {
 }
 
 func (i *informator) InformNameLength(name string, min int, max int) (info string) {
-	info = "Name: "
+	info = "Name Length: "
 	if len(name) > max {
 		info += fmt.Sprintf(i.maxLengthPattern, name, max)
 	} else if len(name) < min {
 		info += fmt.Sprintf(i.minLengthPattern, name, min)
 	} else {
-		info += "Length is ok"
+		info += "ok"
 	}
 	return
 }
 
 func (i *informator) InformLastNameLength(lastname string, min int, max int) (info string) {
-	info = "LastName: "
+	info = "LastName Length: "
 	if len(lastname) > max {
 		info += fmt.Sprintf(i.maxLengthPattern, lastname, max)
 	} else if len(lastname) < min {
 		info += fmt.Sprintf(i.minLengthPattern, lastname, min)
 	} else {
-		info += "Length is ok"
+		info += "ok"
 	}
 	return
 }
@@ -46,7 +46,7 @@ func (i *informator) InformAge(age int, min int, max int) (info string) {
 	} else if age < min {
 		info += fmt.Sprintf(i.minNumberPattern, age, min)
 	} else {
-		info += " is ok"
+		info += "ok"
 	}
 	return
 }

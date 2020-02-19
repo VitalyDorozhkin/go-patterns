@@ -24,6 +24,7 @@ type factory interface {
 	NewUser(name string, lastname string, age int) user
 }
 
+// UserCreator is a service, that work with user validation
 type UserCreator interface {
 	NewUser(name string, lastname string, age int) (user, error)
 }
@@ -34,6 +35,7 @@ type userCreator struct {
 	factory    factory
 }
 
+// NewUser creating new user if validation passed
 func (u *userCreator) NewUser(name string, lastname string, age int) (user user, err error) {
 	if res, min, max := u.validator.CheckNameLength(name); !res {
 		err = fmt.Errorf(u.informator.InformNameLength(name, min, max))
