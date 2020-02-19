@@ -12,55 +12,50 @@ var v = &validator{
 }
 
 func Test_validator_CheckAge(t *testing.T) {
-	type fields struct {
-		nameLength     models.Interval
-		lastnameLength models.Interval
-		age            models.Interval
-	}
 	type args struct {
 		age int
 	}
 	tests := []struct {
-		name   string
-		args   args
-		want   bool
-		want1  int
-		want2  int
+		name  string
+		args  args
+		want  bool
+		want1 int
+		want2 int
 	}{
 		{
-			name:   "long",
-			args:   args{age: 7},
-			want:   false,
-			want1:  2,
-			want2:  6,
+			name:  "long",
+			args:  args{age: 7},
+			want:  false,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "short",
-			args:   args{age: 1},
-			want:   false,
-			want1:  2,
-			want2:  6,
+			name:  "short",
+			args:  args{age: 1},
+			want:  false,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "middle",
-			args:   args{age: 4},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "middle",
+			args:  args{age: 4},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "max",
-			args:   args{age: 6},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "max",
+			args:  args{age: 6},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "min",
-			args:   args{age: 2},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "min",
+			args:  args{age: 2},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 	}
 
@@ -85,46 +80,46 @@ func Test_validator_CheckLastNameLength(t *testing.T) {
 		lastname string
 	}
 	tests := []struct {
-		name   string
-		args   args
-		want   bool
-		want1  int
-		want2  int
+		name  string
+		args  args
+		want  bool
+		want1 int
+		want2 int
 	}{
 		{
-			name:   "long",
-			args:   args{lastname: "abcdefg"},
-			want:   false,
-			want1:  2,
-			want2:  6,
+			name:  "long",
+			args:  args{lastname: "abcdefg"},
+			want:  false,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "short",
-			args:   args{lastname: "a"},
-			want:   false,
-			want1:  2,
-			want2:  6,
+			name:  "short",
+			args:  args{lastname: "a"},
+			want:  false,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "middle",
-			args:   args{lastname: "abcd"},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "middle",
+			args:  args{lastname: "abcd"},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "max",
-			args:   args{lastname: "abcdef"},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "max",
+			args:  args{lastname: "abcdef"},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "min",
-			args:   args{lastname: "ab"},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "min",
+			args:  args{lastname: "ab"},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 	}
 
@@ -149,46 +144,46 @@ func Test_validator_CheckNameLength(t *testing.T) {
 		name string
 	}
 	tests := []struct {
-		name   string
-		args   args
-		want   bool
-		want1  int
-		want2  int
+		name  string
+		args  args
+		want  bool
+		want1 int
+		want2 int
 	}{
 		{
-			name:   "long",
-			args:   args{name: "abcdefg"},
-			want:   false,
-			want1:  2,
-			want2:  6,
+			name:  "long",
+			args:  args{name: "abcdefg"},
+			want:  false,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "short",
-			args:   args{name: "a"},
-			want:   false,
-			want1:  2,
-			want2:  6,
+			name:  "short",
+			args:  args{name: "a"},
+			want:  false,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "middle",
-			args:   args{name: "abcd"},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "middle",
+			args:  args{name: "abcd"},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "max",
-			args:   args{name: "abcdef"},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "max",
+			args:  args{name: "abcdef"},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 		{
-			name:   "min",
-			args:   args{name: "ab"},
-			want:   true,
-			want1:  2,
-			want2:  6,
+			name:  "min",
+			args:  args{name: "ab"},
+			want:  true,
+			want1: 2,
+			want2: 6,
 		},
 	}
 

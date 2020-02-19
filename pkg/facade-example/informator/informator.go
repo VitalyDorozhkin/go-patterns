@@ -2,6 +2,7 @@ package informator
 
 import "fmt"
 
+// Informator describe errors by the pattern
 type Informator interface {
 	InformNameLength(name string, min int, max int) string
 	InformLastNameLength(lastname string, min int, max int) string
@@ -15,6 +16,7 @@ type informator struct {
 	minNumberPattern string
 }
 
+// InformNameLength ...
 func (i *informator) InformNameLength(name string, min int, max int) (info string) {
 	info = "Name Length: "
 	if len(name) > max {
@@ -27,6 +29,7 @@ func (i *informator) InformNameLength(name string, min int, max int) (info strin
 	return
 }
 
+// InformLastNameLength ...
 func (i *informator) InformLastNameLength(lastname string, min int, max int) (info string) {
 	info = "LastName Length: "
 	if len(lastname) > max {
@@ -39,6 +42,7 @@ func (i *informator) InformLastNameLength(lastname string, min int, max int) (in
 	return
 }
 
+// InformAge ...
 func (i *informator) InformAge(age int, min int, max int) (info string) {
 	info = "Age: "
 	if age > max {
@@ -51,6 +55,7 @@ func (i *informator) InformAge(age int, min int, max int) (info string) {
 	return
 }
 
+// NewInformator initializes the Informator
 func NewInformator(maxLengthPattern string, minLengthPattern string, maxNumberPattern string, minNumberPattern string) Informator {
 	return &informator{
 		maxLengthPattern: maxLengthPattern,

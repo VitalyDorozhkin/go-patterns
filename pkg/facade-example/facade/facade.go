@@ -26,7 +26,7 @@ type factory interface {
 
 // UserCreator is a service, that work with user validation
 type UserCreator interface {
-	NewUser(name string, lastname string, age int) (user, error)
+	NewUser(name string, lastname string, age int) (user, []error)
 }
 
 type userCreator struct {
@@ -36,23 +36,22 @@ type userCreator struct {
 }
 
 // NewUser creating new user if validation passed
-func (u *userCreator) NewUser(name string, lastname string, age int) (user user, err error) {
+func (u *userCreator) NewUser(name string, lastname string, age int) (user user, err []error) {
 	if res, min, max := u.validator.CheckNameLength(name); !res {
-		err = fmt.Errorf(u.informator.InformNameLength(name, min, max))
-		return
+		err = append(err, fmt.Errorf(u.informator.InformNameLength(name, min, max)))
 	}
-	if res, min, max := u.validator.CheckLastNameLength(name); !res {
-		err = fmt.Errorf(u.informator.InformLastNameLength(lastname, min, max))
-		return
+	if res, min, max := u.validator.CheckLastNameLength(lastname); !res {
+		err = append(err, fmt.Errorf(u.informator.InformLastNameLength(lastname, min, max)))
 	}
 	if res, min, max := u.validator.CheckAge(age); !res {
-		err = fmt.Errorf(u.informator.InformAge(age, min, max))
-		return
+		err = append(err, fmt.Errorf(u.informator.InformAge(age, min, max)))
 	}
-	user = u.factory.NewUser(name, lastname, age)
+	if len(err) == 0 {
+		user = u.factory.NewUser(name, lastname, age)
+	}
 	return
 }
-
+// NewUserCreator nitializes the UserCreator
 func NewUserCreator(f factory, v validator, i informator) (u UserCreator) {
 	u = &userCreator{
 		validator:  v,
