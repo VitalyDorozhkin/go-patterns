@@ -51,7 +51,8 @@ func (u *userCreator) NewUser(name string, lastname string, age int) (user user,
 	}
 	return
 }
-// NewUserCreator nitializes the UserCreator
+
+// NewUserCreator initializes the UserCreator
 func NewUserCreator(f factory, v validator, i informator) (u UserCreator) {
 	u = &userCreator{
 		validator:  v,

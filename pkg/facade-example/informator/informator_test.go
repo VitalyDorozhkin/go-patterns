@@ -11,7 +11,7 @@ var i = &informator{
 	minLengthPattern: "'%s' is too short! min %d",
 }
 
-func Test_informator_InformAge(t *testing.T) {
+func Test_Informator_InformAge(t *testing.T) {
 	type args struct {
 		age int
 		min int
@@ -23,18 +23,18 @@ func Test_informator_InformAge(t *testing.T) {
 		wantInfo string
 	}{
 		{
-			name: "middle",
-			args: args{4, 2, 6},
+			name:     "middle",
+			args:     args{4, 2, 6},
 			wantInfo: "Age: ok",
 		},
 		{
-			name: "bigger",
-			args: args{7, 2, 6},
+			name:     "bigger",
+			args:     args{7, 2, 6},
 			wantInfo: "Age: 7 is too big! max 6",
 		},
 		{
-			name: "smaller",
-			args: args{1, 2, 6},
+			name:     "smaller",
+			args:     args{1, 2, 6},
 			wantInfo: "Age: 1 is too small! min 2",
 		},
 	}
@@ -47,11 +47,11 @@ func Test_informator_InformAge(t *testing.T) {
 	}
 }
 
-func Test_informator_InformLastNameLength(t *testing.T) {
+func Test_Informator_InformLastNameLength(t *testing.T) {
 	type args struct {
 		lastname string
-		min int
-		max int
+		min      int
+		max      int
 	}
 	tests := []struct {
 		name     string
@@ -59,18 +59,18 @@ func Test_informator_InformLastNameLength(t *testing.T) {
 		wantInfo string
 	}{
 		{
-			name: "middle",
-			args: args{"ab", 2, 6},
+			name:     "middle",
+			args:     args{"ab", 2, 6},
 			wantInfo: "LastName Length: ok",
 		},
 		{
-			name: "longer",
-			args: args{"abcdefghi", 2, 6},
+			name:     "longer",
+			args:     args{"abcdefghi", 2, 6},
 			wantInfo: "LastName Length: 'abcdefghi' is too long! max 6",
 		},
 		{
-			name: "shorter",
-			args: args{"A", 2, 6},
+			name:     "shorter",
+			args:     args{"A", 2, 6},
 			wantInfo: "LastName Length: 'A' is too short! min 2",
 		},
 	}
@@ -83,11 +83,11 @@ func Test_informator_InformLastNameLength(t *testing.T) {
 	}
 }
 
-func Test_informator_InformNameLength(t *testing.T) {
+func Test_Informator_InformNameLength(t *testing.T) {
 	type args struct {
 		name string
-		min int
-		max int
+		min  int
+		max  int
 	}
 	tests := []struct {
 		name     string
@@ -95,18 +95,18 @@ func Test_informator_InformNameLength(t *testing.T) {
 		wantInfo string
 	}{
 		{
-			name: "middle",
-			args: args{"ab", 2, 6},
+			name:     "middle",
+			args:     args{"ab", 2, 6},
 			wantInfo: "Name Length: ok",
 		},
 		{
-			name: "longer",
-			args: args{"abcdefghi", 2, 6},
+			name:     "longer",
+			args:     args{"abcdefghi", 2, 6},
 			wantInfo: "Name Length: 'abcdefghi' is too long! max 6",
 		},
 		{
-			name: "shorter",
-			args: args{"A", 2, 6},
+			name:     "shorter",
+			args:     args{"A", 2, 6},
 			wantInfo: "Name Length: 'A' is too short! min 2",
 		},
 	}

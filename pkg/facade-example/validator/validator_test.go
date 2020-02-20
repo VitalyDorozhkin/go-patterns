@@ -11,7 +11,7 @@ var v = &validator{
 	age:            models.Interval{Min: 2, Max: 6},
 }
 
-func Test_validator_CheckAge(t *testing.T) {
+func Test_Validator_CheckAge(t *testing.T) {
 	type args struct {
 		age int
 	}
@@ -75,7 +75,7 @@ func Test_validator_CheckAge(t *testing.T) {
 	}
 }
 
-func Test_validator_CheckLastNameLength(t *testing.T) {
+func Test_Validator_CheckLastNameLength(t *testing.T) {
 	type args struct {
 		lastname string
 	}
@@ -139,7 +139,7 @@ func Test_validator_CheckLastNameLength(t *testing.T) {
 	}
 }
 
-func Test_validator_CheckNameLength(t *testing.T) {
+func Test_Validator_CheckNameLength(t *testing.T) {
 	type args struct {
 		name string
 	}

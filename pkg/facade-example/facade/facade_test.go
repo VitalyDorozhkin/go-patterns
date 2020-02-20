@@ -10,7 +10,6 @@ import (
 )
 
 const (
-	testName                   = "Test facade"
 	methodCheckNameLength      = "CheckNameLength"
 	methodCheckLastNameLength  = "CheckLastNameLength"
 	methodCheckAge             = "CheckAge"
@@ -25,9 +24,9 @@ const (
 	failedAge                  = 2
 	min                        = 5
 	max                        = 10
-	badNameMessage = "bad name"
-	badLastNameMessage = "bad lastname"
-	badAgeMessage = "bad age"
+	badNameMessage             = "bad name"
+	badLastNameMessage         = "bad lastname"
+	badAgeMessage              = "bad age"
 )
 
 func Test_userCreator_NewUser(t *testing.T) {
