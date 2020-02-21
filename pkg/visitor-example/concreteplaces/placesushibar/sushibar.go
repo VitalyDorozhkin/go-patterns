@@ -4,7 +4,7 @@ type place = interface {
 	Accept(v visitor) string
 }
 
-type burgerBar = interface {
+type burgerBar =interface {
 	place
 	BuyBurger() string
 }
@@ -20,13 +20,13 @@ type visitor = interface {
 	VisitBurgerBar(p burgerBar) string
 }
 //SushiBar
-type SushiBar = interface {
+type SushiBar interface {
 	place
 	BuySushi() string
 }
 
 type sushiBar struct {
-}
+}  
 
 
 func (s *sushiBar) Accept(v visitor) string {

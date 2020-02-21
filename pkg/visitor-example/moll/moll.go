@@ -1,32 +1,23 @@
 package moll
 
+import (
+	"github.com/VitalyDorozhkin/go-patterns/pkg/visitor-example/concreteplaces/placeburgerbar"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/visitor-example/concreteplaces/placepizzaria"
+	"github.com/VitalyDorozhkin/go-patterns/pkg/visitor-example/concreteplaces/placesushibar"
+)
+
 type place = interface {
 	Accept(v visitor) string
 }
 
-type sushiBar = interface {
-	place
-	BuySushi() string
-}
-
-type burgerBar = interface {
-	place
-	BuyBurger() string
-}
-
-type pizzeria = interface {
-	place
-	BuyPizza() string
-}
-
 type visitor = interface {
-	VisitSushiBar(p sushiBar) string
-	VisitPizzeria(p pizzeria) string
-	VisitBurgerBar(p burgerBar) string
+	VisitSushiBar(p placesushibar.SushiBar) string
+	VisitPizzeria(p placepizzaria.Pizzeria) string
+	VisitBurgerBar(p placeburgerbar.BurgerBar) string
 }
 
 
-type Moll = interface {
+type Moll interface {
 	Add(p place)
 	Accept(v visitor) string
 }
