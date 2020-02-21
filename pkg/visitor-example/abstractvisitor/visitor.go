@@ -1,4 +1,4 @@
-package visitor
+package abstractvisitor
 
 import (
 	"github.com/VitalyDorozhkin/go-patterns/pkg/visitor-example/concreteplaces/placeburgerbar"
@@ -6,6 +6,7 @@ import (
 	"github.com/VitalyDorozhkin/go-patterns/pkg/visitor-example/concreteplaces/placesushibar"
 )
 
+// Visitor ...
 type Visitor interface {
 	VisitSushiBar(p placesushibar.SushiBar) string
 	VisitPizzeria(p placepizzaria.Pizzeria) string

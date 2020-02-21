@@ -1,42 +1,36 @@
 package placepizzaria
 
-type place = interface {
-	Accept(v visitor) string
-}
-
-type sushiBar = interface {
-	place
-	BuySushi() string
-}
-
-type burgerBar = interface {
-	place
-	BuyBurger() string
-}
-
 type visitor interface {
-	VisitSushiBar(p sushiBar) string
 	VisitPizzeria(p Pizzeria) string
-	VisitBurgerBar(p burgerBar) string
 }
 
 //Pizzeria
-type Pizzeria = interface {
-	place
+type Pizzeria interface {
+	Accept(v visitor) string
 	BuyPizza() string
+	SetRating(r int)
 }
 
 type pizzeria struct {
+	rating int
 }
 
-func (b *pizzeria) Accept(v visitor) string {
-	return v.VisitPizzeria(b)
+// SetRating ...
+func (p *pizzeria) SetRating(r int) {
+	p.rating = r
 }
 
-func (b *pizzeria) BuyPizza() string {
-	return "Buy pizza..."
+// Accept  ...
+func (p *pizzeria) Accept(v visitor) string {
+	return v.VisitPizzeria(p)
 }
 
+// BuyPizza ...
+func (p *pizzeria) BuyPizza() string {
+	return "Buy pizza"
+}
+
+// NewPizzeria initialize pizzeria
 func NewPizzeria() Pizzeria {
 	return &pizzeria{}
 }
